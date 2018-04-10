@@ -251,7 +251,7 @@ void MakeScreen_Calibrate(void)
 // This define is for the size of the buffer we are going to use for data transfers.  It is 
 // sitting here so uncomfortably because it is a silly tiny buffer in Arduino Uno and you
 // will want a bigger one if you can get it.  Redefine this and add a nice buffer to Load_ZLIB()
-#define COPYBUFSIZE LogBufSize
+#define COPYBUFSIZE WorkBuffSz
 
 // Load a compressed bitmap from SD card into RAM_G at address "BaseAdd"
 // The file will have been processed by "img_cvt.exe" from FTDI
