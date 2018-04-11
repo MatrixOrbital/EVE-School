@@ -8,6 +8,8 @@ Example code for Bridgetech Eve2 FT810 running on Arduino.
     files if you wish.  This is optional, but the Eve2-Library is likely to contain an extension of what you
     have here in case you wish to make some more advanced screens.
 
+- Matrix Orbital Eve2 display information can be found at: https://www.matrixorbital.com/ftdi-eve
+
 - An Arduino shield with a connector for Matrix Orbital Eve2 displays is used to interface the Arduino to Eve.  
   This shield includes:
   - 20 contact FFC connector for Matrix Orbital Eve2 displays
