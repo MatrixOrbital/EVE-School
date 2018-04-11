@@ -8,6 +8,7 @@
 #include "process.h"      // More application level code
 
 // The file of type File and named myFile is global and used for any and all files.  
+// It is used for saving data on the SD card, such as touch calibration and image data.
 // Your job is to make sure you are not trying to open it twice.
 File myFile;
 
