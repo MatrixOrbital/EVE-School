@@ -1,4 +1,4 @@
-Example code for Bridgetech Eve2 FT810 running on Arduino.
+Example code for Bridgetek Eve2 FT810 running on Arduino.
 
 - This code makes use of the Matrix Orbital Eve2 Library found here: 
 
