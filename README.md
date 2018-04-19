@@ -1,6 +1,10 @@
-Example code for Bridgetek Eve2 FT810 / FT812 running on Arduino.
+Example code for FTDI Bridgetek EVE2 FT812 / FT813 running on Arduino.
 
-- This code makes use of the Matrix Orbital Eve2 Library found here: 
+- Designed for Matrix Orbital EVE2 SPI TFT Displays
+
+  https://www.matrixorbital.com/ftdi-eve
+
+- This code makes use of the Matrix Orbital EVE2 Library found here: 
 
   https://github.com/MatrixOrbital/EVE2-Library
 
@@ -8,12 +12,16 @@ Example code for Bridgetek Eve2 FT810 / FT812 running on Arduino.
     files if you wish.  This is optional, but the Eve2-Library is likely to contain an extension of what you
     have here in case you wish to make some more advanced screens.
 
-- Matrix Orbital Eve2 display information can be found at: https://www.matrixorbital.com/ftdi-eve
+- Matrix Orbital EVE2 SPI TFT display information can be found at: https://www.matrixorbital.com/ftdi-eve
 
-- An Arduino shield with a connector for Matrix Orbital Eve2 displays is used to interface the Arduino to Eve.  
+- An Arduino shield with a connector for Matrix Orbital EVE2 displays is used to interface the Arduino to Eve.  
   This shield includes:
-  - 20 contact FFC connector for Matrix Orbital Eve2 displays
+  - 20 contact FFC connector for Matrix Orbital EVE2 displays
   - 3 pushbuttons for application control without requiring a touchscreen (useful for initial calibration)
   - Audio amplifier and speaker for audio feedback
   - SD card holder
   - Additionally, the shield board is automatically level shifted for 5V Arduino and works with 3.3V Parallax Propeller ASC+ 
+  
+  Support Forums
+  
+  http://www.lcdforums.com/forums/viewforum.php?f=45
