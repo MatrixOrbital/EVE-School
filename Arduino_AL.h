@@ -36,7 +36,7 @@ extern "C" {
 // defines related to hardware and relevant only to the hardware abstraction layer (this and .ino files)
 #define EveChipSelect_PIN     9  // PB1
 #define EveAudioEnable_PIN    1  // PD1
-#define EvePDN_PIN            8  // PB0
+#define EvePDN_PIN           10  // PB2
 #define SDChipSelect_PIN      3  // PD3
 #define Button1_PIN           5  // PD5
 #define Button2_PIN           6  // PD6 
