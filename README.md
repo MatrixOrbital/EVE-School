@@ -1,4 +1,4 @@
-<h1>EVE Example code for an Arduino.
+#EVE Example code for an Arduino
   
 ![alt text](https://www.lcdforums.com/forums/download/file.php?id=1433)
 
@@ -11,6 +11,7 @@ Written for an [**EVE2**](https://www.matrixorbital.com/ftdi-eve/eve-ft812) or [
 1. Download the zip file
 2. Rename the directory from EVE-School-master to EVE-School
 3. Copy the 4 files located in 'Images for SD card' to the root of a SD Card
+4. Load the INO file, and upload the program to the Arduino
 
 This code when executed will display MATRIX ORBITAL text and a blue circle.
 ![alt text](https://raw.githubusercontent.com/MatrixOrbital/Basic-EVE-Demo/master/Screens/Basic-EVE-Demo-2.jpg)
