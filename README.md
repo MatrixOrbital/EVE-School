@@ -64,7 +64,7 @@ Button S3:
 
   **Support Forums**
  
-![alt text](https://www.lcdforums.com/forums/download/file.php?id=1430)
+ http://www.lcdforums.com/forums/viewforum.php?f=45
   
 
   
