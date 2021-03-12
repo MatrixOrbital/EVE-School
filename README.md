@@ -43,7 +43,7 @@ Button S3:
 
 **Hardware Requirements:**
 
-- Designed for Matrix Orbital EVE2/3/4 SPI TFT Displays
+- Matrix Orbital EVE2/3/4 SPI TFT Displays
   https://www.matrixorbital.com/ftdi-eve  
 ![alt text](https://www.lcdforums.com/forums/download/file.php?id=1433)
   
