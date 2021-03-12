@@ -4,9 +4,21 @@
 
 Written for an [**EVE2**](https://www.matrixorbital.com/ftdi-eve/eve-ft812) or [**EVE3**](https://www.matrixorbital.com/ftdi-eve/eve-bt815-bt816) or [**EVE4**](https://www.matrixorbital.com/ftdi-eve/eve-bt817-bt818) running on an Arduino UNO.
 
+This code will illustrate:
+* EVE initilization
+* Set colour
+* Draw blue dot
+* Write text
+* Displaying an image
 ------------------------------------------------------------------
 
 **Instructions:**
+
+The example is configured for a 4.3" display resistive touch, to change the display used edit:
+
+Eve2_81x.h --> // Panel specific setup parameters
+
+The settings work for EVE2, EVE3 and EVE4 displays.
 
 1. Download the zip file
 2. Rename the directory from EVE-School-master to EVE-School
@@ -16,15 +28,14 @@ Written for an [**EVE2**](https://www.matrixorbital.com/ftdi-eve/eve-ft812) or [
 6. Plugin the USB to the Arduino UNO and Power to the barrel jack
 7. Load the INO file, and upload the program to the Arduino
 
-This code when executed will display MATRIX ORBITAL text and a blue circle.
-![alt text](https://raw.githubusercontent.com/MatrixOrbital/Basic-EVE-Demo/master/Screens/Basic-EVE-Demo-2.jpg)
+This code when executed will display FTDI text and a red circle.
 
-**IMPORTANT**
-The example is configured for a 4.3" Display, to change the display used edit:
 
-Eve2_81x.h --> // Panel specific setup parameters
+Button S1:
+Button S2:
+Button S3:
 
-The settings work for EVE2, EVE3 and EVE4 displays.
+
   
 ------------------------------------------------------------------
 
