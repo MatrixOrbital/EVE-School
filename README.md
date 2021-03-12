@@ -11,9 +11,9 @@ Written for an [**EVE2**](https://www.matrixorbital.com/ftdi-eve/eve-ft812) or [
 1. Download the zip file
 2. Rename the directory from EVE-School-master to EVE-School
 3. Copy the 4 files located in 'Images for SD card' to the root of a SD Card
-4. Put the SD Card into the EVE2-Scoodo Sheild, connect the Shield to the UNO
-5. Connect the FFC cable to the Shield and EVE display, BLUE UP on the FFC
-6. 
+4. Put the SD Card into the [EVE2-Scoodo Sheild](https://www.matrixorbital.com/eve2-shield), connect the Shield to the UNO
+5. Connect the [FFC cable](https://www.matrixorbital.com/ffc-20-pin) to the Shield and EVE display, BLUE UP on the FFC
+6. Plugin the USB to the Arduino UNO and Power to the barrel jack
 7. Load the INO file, and upload the program to the Arduino
 
 This code when executed will display MATRIX ORBITAL text and a blue circle.
@@ -39,6 +39,10 @@ The settings work for EVE2, EVE3 and EVE4 displays.
   https://www.matrixorbital.com/eve2-shield  
 ![alt text](https://www.lcdforums.com/forums/download/file.php?id=1432)
 
+
+ **EVE SPI TFT connected to a Scoodo SHIELD**
+ 
+![alt text](https://www.lcdforums.com/forums/download/file.php?id=1430)
 
 **LIBRARY**
 - This code makes use of the Matrix Orbital EVE2 Library found here: 
