@@ -358,8 +358,8 @@ uint32_t WriteBlockRAM(uint32_t Add, const uint8_t *buff, uint32_t count);
   
 //User selectable configurations.
 //#define EVE2_70
-#define EVE2_50
-//#define EVE2_43
+//#define EVE2_50
+#define EVE2_43
 //#define EVE2_38
 //#define EVE2_35
 //#define EVE2_29
