@@ -10,6 +10,8 @@ This code will illustrate:
 * Draw blue dot
 * Write text
 * Displaying an image
+* Make a button
+* Sound demo
 ------------------------------------------------------------------
 
 **Instructions:**
