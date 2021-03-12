@@ -14,7 +14,7 @@ This code will illustrate:
 
 **Instructions:**
 
-The example is configured for a 4.3" display resistive touch, to change the display used edit:
+The example is configured for a 4.3" display, to change the display used edit:
 
 Eve2_81x.h --> // Panel specific setup parameters
 
