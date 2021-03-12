@@ -95,7 +95,7 @@ void MakeScreen_Button(void)
   Cmd_Text(470, 250, 26, OPT_RIGHTX, "matrixorbital.com");  // White text
   
   Send_CMD(COLOR_RGB(0xDE,0x00,0x08));                      // Change the color of following text to reddish
-  Cmd_Text(240, 40, 31, OPT_CENTERX, "FT81x Sound Demo");
+  Cmd_Text(240, 40, 31, OPT_CENTERX, "Sound Demo");
   
   Send_CMD(COLOR_RGB(64, 64, 64));                          // Change color of following text to grey
   Cmd_FGcolor(0x228B22);                                    // Change button face color to a mild green
