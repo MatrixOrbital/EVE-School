@@ -63,17 +63,17 @@ void GlobalInit(void);
 uint8_t ReadPin(uint8_t);
 void SetPin(uint8_t, bool);
 void SD_Init(void);
-void SPI_Enable(void);
-void SPI_Disable(void);
-void SPI_Write(uint8_t data);
-void SPI_WriteByte(uint8_t data);
-void SPI_WriteBuffer(uint8_t *Buffer, uint32_t Length);
-void SPI_ReadBuffer(uint8_t *Buffer, uint32_t Length);
+void HAL_SPI_Enable(void);
+void HAL_SPI_Disable(void);
+void HAL_SPI_Write(uint8_t data);
+void HAL_SPI_WriteByte(uint8_t data);
+void HAL_SPI_WriteBuffer(uint8_t *Buffer, uint32_t Length);
+void HAL_SPI_ReadBuffer(uint8_t *Buffer, uint32_t Length);
 
 // These functions encapsulate Arduino core functions
 void Init_Keys(void);
 void DebugPrint(char *str);
-void MyDelay(uint32_t DLY);
+void HAL_Delay(uint32_t DLY);
 bool SaveTouchMatrix(void);
 bool LoadTouchMatrix(void);
 void Eve_Reset_HW(void);

@@ -10,10 +10,10 @@ void SelectScreen(uint8_t ID)
   switch(ID)
   {
   case SCR_FTDI:
-    MakeScreen_FTDI(20);            // FTDI Screen
+    MakeScreen_MatrixOrbital(20);     // Matrix Orbital Screen
     break;
   case SCR_FTDIFIFO:
-    MakeScreen_FTDIFIFO(10);        // FTDI Screen made using FIFO
+    MakeScreen_MatrixOrbitalFIFO(10); // Matrix Orbital Screen made using FIFO
     break;
   case SCR_Calibrate:
     MakeScreen_Calibrate();         // Calibration Screen
@@ -35,52 +35,55 @@ void SelectScreen(uint8_t ID)
   }
 }
 
-// red dot example (Straight into the display list without CoProcessor interaction)
+// blue dot example (Straight into the display list without CoProcessor interaction)
 // This is supposed to demonstrate the Display List (which you will never want to directly manipulate ever again)
 // A value is passed in to set the size of the dot (to give visual feedback to the touch region we TAG-ed to the dot)
-void MakeScreen_FTDI(uint8_t DotSize)
+void MakeScreen_MatrixOrbital(uint8_t DotSize)
 {
-//  Log("Enter FTDI\n");
-
   wr32(RAM_DL + 0, CLEAR(1, 1, 1));                // clear screen (but not calibration)
   wr32(RAM_DL + 4, BEGIN(BITMAPS));                // start drawing bitmaps
-  wr32(RAM_DL + 8, VERTEX2II(220, 110, 31, 'F'));  // ascii F in font 31
-  wr32(RAM_DL + 12, VERTEX2II(244, 110, 31, 'T')); // ascii T
-  wr32(RAM_DL + 16, VERTEX2II(272, 110, 31, 'D')); // ascii D
-  wr32(RAM_DL + 20, VERTEX2II(299, 110, 31, 'I')); // ascii I
-  wr32(RAM_DL + 24, END());                        // end placing bitmaps
-  wr32(RAM_DL + 28, COLOR_RGB(192, 26, 26));       // change colour to reddish
-  wr32(RAM_DL + 32, POINT_SIZE(DotSize * 16));     // set point size to DotSize pixels. Points = (pixels x 16)
-  wr32(RAM_DL + 36, BEGIN(POINTS));                // start drawing points
-  wr32(RAM_DL + 40, TAG(1));                       // Tag the red dot with a touch ID
-  wr32(RAM_DL + 44, VERTEX2II(192, 133, 0, 0));    // place red point
-  wr32(RAM_DL + 48, END());                        // end placing points
-  wr32(RAM_DL + 52 , DISPLAY());                   // display the image
+  int start = 0;
+  wr32(RAM_DL + 8, VERTEX2II(55, 110, 31, 'M'));  // ascii M in font 31
+  wr32(RAM_DL + 12, VERTEX2II(88, 110, 31, 'A')); // ascii A
+  wr32(RAM_DL + 16, VERTEX2II(110, 110, 31, 'T')); // ascii T
+  wr32(RAM_DL + 24, VERTEX2II(135, 110, 31, 'R')); // ascii R
+  wr32(RAM_DL + 28, VERTEX2II(160, 110, 31, 'I')); // ascii I 
+  wr32(RAM_DL + 32, VERTEX2II(170, 110, 31, 'X')); // ascii X  
+  wr32(RAM_DL + 36, VERTEX2II(285, 110, 31, 'O')); // ascii O
+  wr32(RAM_DL + 40, VERTEX2II(313, 110, 31, 'R')); // ascii R
+  wr32(RAM_DL + 44, VERTEX2II(339, 110, 31, 'B')); // ascii B
+  wr32(RAM_DL + 48, VERTEX2II(367, 110, 31, 'I')); // ascii I
+  wr32(RAM_DL + 52, VERTEX2II(379, 110, 31, 'T')); // ascii T
+  wr32(RAM_DL + 56, VERTEX2II(400, 110, 31, 'A')); // ascii A
+  wr32(RAM_DL + 60, VERTEX2II(426, 110, 31, 'L')); // ascii L
+  wr32(RAM_DL + 64, END());                        // end placing bitmaps
+  wr32(RAM_DL + 68, COLOR_RGB(26, 192, 255));      // change colour to blue
+  wr32(RAM_DL + 72, POINT_SIZE(DotSize * 16));     // set point size to DotSize pixels. Points = (pixels x 16)
+  wr32(RAM_DL + 76, BEGIN(POINTS));                // start drawing points
+  wr32(RAM_DL + 80, TAG(1));                       // Tag the red dot with a touch ID
+  wr32(RAM_DL + 84, VERTEX2II(240, 133, 0, 0));    // place blue point
+  wr32(RAM_DL + 88, END());                        // end placing points
+  wr32(RAM_DL + 92, DISPLAY());                    // display the image
   wr8(REG_DLSWAP + RAM_REG, DLSWAP_FRAME);         // swap display lists
 }
 
-// red dot example using the FIFO
+// blue dot example using the FIFO
 // Demonstrate the equivalency of using the FIFO to directly generate the Display List
-void MakeScreen_FTDIFIFO(uint8_t DotSize)
+void MakeScreen_MatrixOrbitalFIFO(uint8_t DotSize)
 {
-//  Log("Enter FTDIFIFO\n");
-
-  Send_CMD(CMD_DLSTART);
-  Send_CMD(CLEAR(1, 1, 1));                // clear screen (but not calibration)
-  Send_CMD(BEGIN(BITMAPS));                // start drawing bitmaps
-  Send_CMD(VERTEX2II(220, 110, 31, 'F'));  // ascii F in font 31
-  Send_CMD(VERTEX2II(244, 110, 31, 'T'));  // ascii T
-  Send_CMD(VERTEX2II(272, 110, 31, 'D'));  // ascii D
-  Send_CMD(VERTEX2II(299, 110, 31, 'I'));  // ascii I
-  Send_CMD(END());                         // end placing bitmaps
-  Send_CMD(COLOR_RGB(192, 26, 26));        // change colour to reddish
+  Send_CMD(VERTEXFORMAT(0));               //setup VERTEX2F to take pixel coordinates
+  Send_CMD(CLEAR_COLOR_RGB(0, 0, 0));      //Determine the clear screen color
+  Send_CMD(CLEAR(1, 1, 1));              //Clear the screen and the curren display list
+  Send_CMD(COLOR_RGB(26, 26, 192));        // change colour to blue
   Send_CMD(POINT_SIZE(DotSize * 16));      // set point size to DotSize pixels. Points = (pixels x 16)
-  Send_CMD(BEGIN(POINTS));                 // start drawing points
-  Send_CMD(TAG(2));                        // Tag the red dot with a touch ID
-  Send_CMD(VERTEX2II(192, 133, 0, 0));     // place red point
-  Send_CMD(END());                         // end placing points
-  Send_CMD(DISPLAY());                     // display the image
-  Send_CMD(CMD_SWAP);                      // Make this screen active
+  Send_CMD(BEGIN(POINTS));                 // start drawing point
+  Send_CMD(TAG(1));                        // Tag the blue dot with a touch ID
+  Send_CMD(VERTEX2F(Display_Width() / 2, Display_Height() / 2));     // place blue point
+  Send_CMD(END());                         // end drawing point
+  Send_CMD(COLOR_RGB(255, 255, 255));      //Change color to white for text
+  Cmd_Text(Display_Width() / 2, Display_Height() / 2, 30, OPT_CENTER, " MATRIX         ORBITAL"); //Write text in the center of the screen
+  Send_CMD(DISPLAY());                     //End the display list
+  Send_CMD(CMD_SWAP);                      //Swap commands into RAM
   UpdateFIFO();                            // Trigger the CoProcessor to start processing the FIFO
 }
 
@@ -243,7 +246,7 @@ void MakeScreen_Calibrate(void)
   UpdateFIFO();                                               // Trigger the CoProcessor to start processing commands out of the FIFO
   
   Wait4CoProFIFOEmpty();                                      // wait here until the coprocessor has read and executed every pending command.
-  MyDelay(100);
+  HAL_Delay(100);
 
   Log("Leaving Calibrate\n");
 }
@@ -387,5 +390,3 @@ uint8_t CheckKeys(void)
 
   return(0);
 }
-
-

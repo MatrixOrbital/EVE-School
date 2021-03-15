@@ -3,9 +3,11 @@
 #include <SPI.h>          // Arduino SPI library
 #include <SD.h>           // Arduino SD card library
 
+
 #include "Eve2_81x.h"     // Matrix Orbital Eve2 Library      
 #include "Arduino_AL.h"   // Hardware abstraction layer for Arduino
 #include "process.h"      // More application level code
+#include "MatrixEve2Conf.h" 
 
 // The file of type File and named myFile is global and used for any and all files.  
 // It is used for saving data on the SD card, such as touch calibration and image data.
@@ -20,7 +22,7 @@ void setup()
 {
   // Initializations.  Order is important
   GlobalInit();
-  FT81x_Init();
+  FT81x_Init(DISPLAY_43, BOARD_EVE2, TOUCH_TPC);
   SD_Init();
 
   if (!LoadTouchMatrix())
@@ -42,7 +44,7 @@ void setup()
   for(uint8_t duty = 0; duty <= 128; duty++)
   {
     wr8(REG_PWM_DUTY + RAM_REG, duty);      // set backlight
-    MyDelay(15);
+    HAL_Delay(15);
   }
 }
 
@@ -193,62 +195,6 @@ void GlobalInit(void)
   SPI.begin();                            // Enable SPI
 }
 
-// Send a single byte through SPI
-void SPI_WriteByte(uint8_t data)
-{
-  SPI.beginTransaction(SPISettings(100000, MSBFIRST, SPI_MODE0));
-  digitalWrite(EveChipSelect_PIN, LOW);
-
-  SPI.transfer(data);
-      
-  digitalWrite(EveChipSelect_PIN, HIGH);
-  SPI.endTransaction();
-}
-
-// Send a series of bytes (contents of a buffer) through SPI
-void SPI_WriteBuffer(uint8_t *Buffer, uint32_t Length)
-{
-  SPI.beginTransaction(SPISettings(100000, MSBFIRST, SPI_MODE0));
-  digitalWrite(EveChipSelect_PIN, LOW);
-
-  SPI.transfer(Buffer, Length);
-      
-  digitalWrite(EveChipSelect_PIN, HIGH);
-  SPI.endTransaction();
-}
-
-// Send a byte through SPI as part of a larger transmission.  Does not enable/disable SPI CS
-void SPI_Write(uint8_t data)
-{
-//  Log("W-0x%02x\n", data);
-  SPI.transfer(data);
-}
-
-// Read a series of bytes from SPI and store them in a buffer
-void SPI_ReadBuffer(uint8_t *Buffer, uint32_t Length)
-{
-  uint8_t a = SPI.transfer(0x00); // dummy read
-
-  while (Length--)
-  {
-    *(Buffer++) = SPI.transfer(0x00);
-  }
-}
-
-// Enable SPI by activating chip select line
-void SPI_Enable(void)
-{
-  SPI.beginTransaction(SPISettings(100000, MSBFIRST, SPI_MODE0));
-  digitalWrite(EveChipSelect_PIN, LOW);
-}
-
-// Disable SPI by deasserting the chip select line
-void SPI_Disable(void)
-{
-  digitalWrite(EveChipSelect_PIN, HIGH);
-  SPI.endTransaction();
-}
-
 void Init_Keys(void)
 {
   // Pin setup as input for each button pin
@@ -257,25 +203,9 @@ void Init_Keys(void)
   pinMode(Button3_PIN, INPUT);
 }
 
-void Eve_Reset_HW(void)
-{
-  // Reset Eve
-  SetPin(EvePDN_PIN, 0);                    // Set the Eve PDN pin low
-  MyDelay(50);                             // delay
-  SetPin(EvePDN_PIN, 1);                    // Set the Eve PDN pin high
-  MyDelay(100);                            // delay
-}
-
 void DebugPrint(char *str)
 {
   Serial.print(str);
-}
-
-// A millisecond delay wrapper for the Arduino function
-void MyDelay(uint32_t DLY)
-{
-  uint32_t wait;
-  wait = millis() + DLY; while(millis() < wait);
 }
 
 // An abstracted pin write that may be called from outside this file.
@@ -436,4 +366,3 @@ bool myFileIsOpen(void)
   else
     return false;
 }
-
