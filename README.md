@@ -2,7 +2,7 @@
   
 ![alt text](https://www.lcdforums.com/forums/download/file.php?id=1433)
 
-Written for a Matrix Orbital [**EVE2**](https://www.matrixorbital.com/ftdi-eve/eve-ft812) or [**EVE3**](https://www.matrixorbital.com/ftdi-eve/eve-bt815-bt816) or [**EVE4**](https://www.matrixorbital.com/ftdi-eve/eve-bt817-bt818) running on an Arduino UNO.
+Written for a Matrix Orbital [**EVE3**](https://www.matrixorbital.com/ftdi-eve/eve-bt815-bt816) or [**EVE4**](https://www.matrixorbital.com/ftdi-eve/eve-bt817-bt818) running on an Arduino UNO. The demo will work on EVE2 displays with the exception of touch.
 
 This code will illustrate:
 * EVE initilization
@@ -20,7 +20,7 @@ The example is configured for a 4.3" display, to change the display used edit:
 
 Eve2_81x.h --> // Panel specific setup parameters
 
-The settings work for EVE2, EVE3 and EVE4 displays.
+The settings work for EVE3 and EVE4 displays.
 
 1. Download the zip file
 2. Rename the directory from EVE-School-master to EVE-School
@@ -43,7 +43,7 @@ Button S3:
 
 **Hardware Requirements:**
 
-- Matrix Orbital EVE2/3/4 SPI TFT Displays
+- Matrix Orbital EVE3/4 SPI TFT Displays
   https://www.matrixorbital.com/ftdi-eve  
 ![alt text](https://www.lcdforums.com/forums/download/file.php?id=1433)
   
