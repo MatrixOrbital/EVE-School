@@ -42,28 +42,27 @@ void MakeScreen_MatrixOrbital(uint8_t DotSize)
 {
   wr32(RAM_DL + 0, CLEAR(1, 1, 1));                // clear screen (but not calibration)
   wr32(RAM_DL + 4, BEGIN(BITMAPS));                // start drawing bitmaps
-  int start = 0;
   wr32(RAM_DL + 8, VERTEX2II(55, 110, 31, 'M'));  // ascii M in font 31
   wr32(RAM_DL + 12, VERTEX2II(88, 110, 31, 'A')); // ascii A
   wr32(RAM_DL + 16, VERTEX2II(110, 110, 31, 'T')); // ascii T
-  wr32(RAM_DL + 24, VERTEX2II(135, 110, 31, 'R')); // ascii R
-  wr32(RAM_DL + 28, VERTEX2II(160, 110, 31, 'I')); // ascii I 
-  wr32(RAM_DL + 32, VERTEX2II(170, 110, 31, 'X')); // ascii X  
-  wr32(RAM_DL + 36, VERTEX2II(285, 110, 31, 'O')); // ascii O
-  wr32(RAM_DL + 40, VERTEX2II(313, 110, 31, 'R')); // ascii R
-  wr32(RAM_DL + 44, VERTEX2II(339, 110, 31, 'B')); // ascii B
-  wr32(RAM_DL + 48, VERTEX2II(367, 110, 31, 'I')); // ascii I
-  wr32(RAM_DL + 52, VERTEX2II(379, 110, 31, 'T')); // ascii T
-  wr32(RAM_DL + 56, VERTEX2II(400, 110, 31, 'A')); // ascii A
-  wr32(RAM_DL + 60, VERTEX2II(426, 110, 31, 'L')); // ascii L
-  wr32(RAM_DL + 64, END());                        // end placing bitmaps
-  wr32(RAM_DL + 68, COLOR_RGB(26, 192, 255));      // change colour to blue
-  wr32(RAM_DL + 72, POINT_SIZE(DotSize * 16));     // set point size to DotSize pixels. Points = (pixels x 16)
-  wr32(RAM_DL + 76, BEGIN(POINTS));                // start drawing points
-  wr32(RAM_DL + 80, TAG(1));                       // Tag the red dot with a touch ID
-  wr32(RAM_DL + 84, VERTEX2II(240, 133, 0, 0));    // place blue point
-  wr32(RAM_DL + 88, END());                        // end placing points
-  wr32(RAM_DL + 92, DISPLAY());                    // display the image
+  wr32(RAM_DL + 20, VERTEX2II(135, 110, 31, 'R')); // ascii R
+  wr32(RAM_DL + 24, VERTEX2II(160, 110, 31, 'I')); // ascii I 
+  wr32(RAM_DL + 28, VERTEX2II(170, 110, 31, 'X')); // ascii X  
+  wr32(RAM_DL + 32, VERTEX2II(285, 110, 31, 'O')); // ascii O
+  wr32(RAM_DL + 36, VERTEX2II(313, 110, 31, 'R')); // ascii R
+  wr32(RAM_DL + 40, VERTEX2II(339, 110, 31, 'B')); // ascii B
+  wr32(RAM_DL + 44, VERTEX2II(367, 110, 31, 'I')); // ascii I
+  wr32(RAM_DL + 48, VERTEX2II(379, 110, 31, 'T')); // ascii T
+  wr32(RAM_DL + 52, VERTEX2II(400, 110, 31, 'A')); // ascii A
+  wr32(RAM_DL + 56, VERTEX2II(426, 110, 31, 'L')); // ascii L
+  wr32(RAM_DL + 60, END());                        // end placing bitmaps
+  wr32(RAM_DL + 64, COLOR_RGB(26, 192, 255));      // change colour to blue
+  wr32(RAM_DL + 68, POINT_SIZE(DotSize * 16));     // set point size to DotSize pixels. Points = (pixels x 16)
+  wr32(RAM_DL + 72, BEGIN(POINTS));                // start drawing points
+  wr32(RAM_DL + 76, TAG(1));                       // Tag the red dot with a touch ID
+  wr32(RAM_DL + 80, VERTEX2II(240, 133, 0, 0));    // place blue point
+  wr32(RAM_DL + 84, END());                        // end placing points
+  wr32(RAM_DL + 86, DISPLAY());                    // display the image
   wr8(REG_DLSWAP + RAM_REG, DLSWAP_FRAME);         // swap display lists
 }
 
