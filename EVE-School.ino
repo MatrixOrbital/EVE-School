@@ -1,13 +1,13 @@
-#include <stdint.h>       // Find types like "uint8_t"
-#include <stdbool.h>      // Find type "bool"
-#include <SPI.h>          // Arduino SPI library
-#include <SD.h>           // Arduino SD card library
+#include <stdint.h>         // Find types like "uint8_t"
+#include <stdbool.h>        // Find type "bool"
+#include <SPI.h>            // Arduino SPI library
+#include <SD.h>             // Arduino SD card library
 
 
-#include "Eve2_81x.h"     // Matrix Orbital Eve2 Library      
-#include "Arduino_AL.h"   // Hardware abstraction layer for Arduino
-#include "process.h"      // More application level code
-#include "MatrixEve2Conf.h" 
+#include "Eve2_81x.h"       // Matrix Orbital EVE Library      
+#include "Arduino_AL.h"     // Hardware abstraction layer for Arduino
+#include "process.h"        // More application level code
+#include "MatrixEve2Conf.h" // Display select
 
 // The file of type File and named myFile is global and used for any and all files.  
 // It is used for saving data on the SD card, such as touch calibration and image data.
@@ -21,8 +21,8 @@ char LogBuf[LogBufSize];
 void setup()
 {
   // Initializations.  Order is important
-  GlobalInit();
-  FT81x_Init(DISPLAY_43, BOARD_EVE2, TOUCH_TPC);
+  GlobalInit();                                     // EVE display interface initialization
+  FT81x_Init(DISPLAY_43, BOARD_EVE2, TOUCH_TPC);    // Reset and initialize the EVE
   SD_Init();
 
   if (!LoadTouchMatrix())
@@ -43,7 +43,7 @@ void setup()
   // Slowly turn up the backlight for "dramatic effect"
   for(uint8_t duty = 0; duty <= 128; duty++)
   {
-    wr8(REG_PWM_DUTY + RAM_REG, duty);      // set backlight
+    wr8(REG_PWM_DUTY + RAM_REG, duty);      // Set backlight brightness
     HAL_Delay(15);
   }
 }
@@ -82,28 +82,28 @@ void MainLoop(void)
           break;
         case 10:                                             // Sound Demo Screen (Makescreen_Button)
           Log(" - 10\n");
-          SetPin(EveAudioEnable_PIN, HIGH);                   // Enable Audio
+          SetPin(EveAudioEnable_PIN, HIGH);                  // Enable Audio
           wr8(REG_VOL_SOUND + RAM_REG, 0xFF);                // Set the volume to maximum
           wr16(REG_SOUND + RAM_REG, 0x4841);                 // Select Xylophone note C3
           wr8(REG_PLAY + RAM_REG, 1);                        // Play the sound
            break;
         case 11:                                             // Sound Demo Screen (Makescreen_Button) 
           Log(" - 11\n");
-          SetPin(EveAudioEnable_PIN, HIGH);                   // Enable Audio
+          SetPin(EveAudioEnable_PIN, HIGH);                  // Enable Audio
           wr8(REG_VOL_SOUND + RAM_REG, 0xFF);                // Set the volume to maximum
           wr16(REG_SOUND + RAM_REG, 0x7241);                 // Select Xylophone note C5
           wr8(REG_PLAY + RAM_REG, 1);                        // Play the sound
           break;
         case 12:                                             // Sound Demo Screen (Makescreen_Button) 
           Log(" - 12\n");
-          SetPin(EveAudioEnable_PIN, HIGH);                   // Enable Audio
+          SetPin(EveAudioEnable_PIN, HIGH);                  // Enable Audio
           wr8(REG_VOL_SOUND + RAM_REG, 0xFF);                // Set the volume to maximum
           wr16(REG_SOUND + RAM_REG, 0x4146);                 // Select Piano note F2
           wr8(REG_PLAY + RAM_REG, 1);                        // Play the sound
           break;
         case 13:                                             // Sound Demo Screen (Makescreen_Button) 
           Log(" - 13\n");
-          SetPin(EveAudioEnable_PIN, HIGH);                   // Enable Audio
+          SetPin(EveAudioEnable_PIN, HIGH);                  // Enable Audio
           wr8(REG_VOL_SOUND + RAM_REG, 0xFF);                // Set the volume to maximum
           wr16(REG_SOUND + RAM_REG, 0x5346);                 // Select Piano note F3
           wr8(REG_PLAY + RAM_REG, 1);                        // Play the sound
@@ -113,7 +113,7 @@ void MainLoop(void)
           break;                                             // unrequired break
         } 
         while(rd8(REG_PLAY + RAM_REG));                      // Wait until sound finished
-        SetPin(EveAudioEnable_PIN, LOW);                      // Disable Audio
+        SetPin(EveAudioEnable_PIN, LOW);                     // Disable Audio
       }
       TouchTimeout = millis() + 20;                          // This sets the sample rate for slider finger movement as well
     }
@@ -180,16 +180,16 @@ void MainLoop(void)
 void GlobalInit(void)
 {
   Serial.begin(115200);
-  while (!Serial) {;}                    // wait for serial port to connect.
+  while (!Serial) {;}                    // Wait for serial port to connect.
   
   // Keys Initialization
   Init_Keys();
 
   // Matrix Orbital Eve display interface initialization
-  pinMode(EvePDN_PIN, OUTPUT);            // Pin setup as output for Eve PDN pin.
-  digitalWrite(EvePDN_PIN, LOW);          // Apply a resetish condition on Eve
+  pinMode(EvePDN_PIN, OUTPUT);            // Pin setup as output for EVE PDN pin.
+  digitalWrite(EvePDN_PIN, LOW);          // Apply a resetish condition on EVE
   pinMode(EveChipSelect_PIN, OUTPUT);     // SPI CS Initialization
-  digitalWrite(EveChipSelect_PIN, HIGH);  // Deselect Eve
+  digitalWrite(EveChipSelect_PIN, HIGH);  // Deselect EVE
   pinMode(EveAudioEnable_PIN, OUTPUT);    // Audio Enable PIN
   digitalWrite(EveAudioEnable_PIN, LOW);  // Disable Audio
   SPI.begin();                            // Enable SPI
