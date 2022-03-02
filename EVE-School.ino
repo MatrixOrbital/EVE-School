@@ -84,14 +84,14 @@ void MainLoop(void)
           Log(" - 10\n");
           SetPin(EveAudioEnable_PIN, HIGH);                  // Enable Audio
           wr8(REG_VOL_SOUND + RAM_REG, 0xFF);                // Set the volume to maximum
-          wr16(REG_SOUND + RAM_REG, 0x4841);                 // Select Xylophone note C3
+          wr16(REG_SOUND + RAM_REG, 0x3041);                 // Select Xylophone note C3
           wr8(REG_PLAY + RAM_REG, 1);                        // Play the sound
            break;
         case 11:                                             // Sound Demo Screen (Makescreen_Button) 
           Log(" - 11\n");
           SetPin(EveAudioEnable_PIN, HIGH);                  // Enable Audio
           wr8(REG_VOL_SOUND + RAM_REG, 0xFF);                // Set the volume to maximum
-          wr16(REG_SOUND + RAM_REG, 0x7241);                 // Select Xylophone note C5
+          wr16(REG_SOUND + RAM_REG, 0x4841);                 // Select Xylophone note C5
           wr8(REG_PLAY + RAM_REG, 1);                        // Play the sound
           break;
         case 12:                                             // Sound Demo Screen (Makescreen_Button) 
